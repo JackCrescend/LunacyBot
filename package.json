@@ -1,0 +1,23 @@
+{
+  "name": "lunacybot",
+  "version": "1.0.0",
+  "description": "Initial Setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackCrescend/LunacyBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackCrescend/LunacyBot/issues"
+  },
+  "homepage": "https://github.com/JackCrescend/LunacyBot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "package.json": "^2.0.1"
+  }
+}
