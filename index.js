@@ -23,7 +23,9 @@ function removeBotMessages(channel) {
     const messages = channel.messages.last(5);
     for (message of messages) {
         if (message.author.bot) {
-            message.delete().catch();
+            if (message.content.slice(0,2) === "<@") {
+                message.delete().catch();
+            }
         }
     }
 }
@@ -110,18 +112,23 @@ client.on('message', message => {
     /******************/
 
     if (commandName === "r") {
-        if (args.length !== 1) { return; }
+        if (args.length < 1 || args.length > 2) { return; }
         if (message.channel.type !== "text") { return; }
 
         const emote = args[0].toLowerCase();
-
         if (!client.emotes.has(emote)) { return; }
+
+        let offset = 2;
+        if (args.length === 2) {
+            if (isNaN(args[1])) { return; }
+            offset = (parseInt(args[1]) + 1);
+        }
 
         const channel = message.channel;
         const user = message.author.username;
-        const messages = message.channel.messages.last(2);
+        const messages = message.channel.messages.last(offset);
 
-        if (messages.length < 2) {
+        if (messages.length < offset) {
             message.reply("Bot cannot reply to messages that are older than when Bot was last rebooted, sorry!");
             setTimeout(removeBotMessages, 5000, channel);
             message.delete().catch();
