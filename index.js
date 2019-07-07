@@ -20,9 +20,18 @@ for (command of client.commands.values()) {
 const cooldowns = new Discord.Collection();
 
 function removeBotMessages(channel) {
-    const messages = channel.messages.array();
+    const messages = channel.messages.last(5);
     for (message of messages) {
         if (message.author.bot) {
+            message.delete().catch();
+        }
+    }
+}
+
+function removeChatCommands(channel) {
+    const messages = channel.messages.array();
+    for (message of messages) {
+        if (message.content[0] === "!") {
             message.delete().catch();
         }
     }
@@ -77,14 +86,24 @@ client.once('ready', () => {
 client.on('message', message => {
     if (message.author.bot) { return; }
     if (message.channel.type === "dm") {
-        console.log(`\n${message.author.username}: ${message.content}\n`);
+        console.log(`${message.author.username}: ${message.content}\n`);
         return;
     }
     if (message.channel.type !== "text") { return; }
     if (!message.content.startsWith(prefix)) { return; }
 
+    console.log(`${message.author.username}: ${message.content}\n`);
+
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
+
+    /********************/
+    /* CHANNEL CLEANING */
+    /********************/
+
+    if (commandName === "clean") {
+        removeChatCommands(message.channel);
+    }
 
     /******************/
     /* REACT COMMANDS */
@@ -103,7 +122,6 @@ client.on('message', message => {
         const messages = message.channel.messages.last(2);
 
         if (messages.length < 2) {
-            console.log("Message too old to add reaction!");
             message.reply("Bot cannot reply to messages that are older than when Bot was last rebooted, sorry!");
             setTimeout(removeBotMessages, 5000, channel);
             message.delete().catch();
