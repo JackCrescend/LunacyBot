@@ -12,11 +12,6 @@ for (file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-let commandInfo = `**LunacyBot Commands**\n`;
-for (command of client.commands.values()) {
-    commandInfo += `\n!${command.name} => ${command.description}`;
-}
-
 const cooldowns = new Discord.Collection();
 
 function removeBotMessages(channel) {
@@ -44,8 +39,6 @@ client.once('ready', () => {
 
     for (guild of client.guilds.values()) {
 
-        commandInfo += `\n\n${guild.name} emote commands:`;
-
         for (emoji of guild.emojis.values()) {
             const command = {};
             command.name = emoji.name.toLowerCase();
@@ -67,20 +60,8 @@ client.once('ready', () => {
 
             };
             client.commands.set(command.name, command);
-
-            commandInfo += `\n!${command.name}`;
         }
     }
-
-    const command = {};
-    command.name = "commands";
-    command.execute = (message, args) => {
-
-        message.author.send(commandInfo)
-            .catch(console.log);
-
-    };
-    client.commands.set(command.name, command);
 
     console.log('Ready!');
 });
@@ -143,6 +124,10 @@ client.on('message', message => {
 
         return;
     }
+
+    /********************/
+    /* REGULAR COMMANDS */
+    /********************/
 
     const command = client.commands.get(commandName);
     if (!command) { return; }
