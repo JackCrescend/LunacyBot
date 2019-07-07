@@ -19,6 +19,15 @@ for (command of client.commands.values()) {
 
 const cooldowns = new Discord.Collection();
 
+function removeBotMessages(channel) {
+    const messages = channel.messages.array();
+    for (message of messages) {
+        if (message.author.bot) {
+            message.delete().catch();
+        }
+    }
+}
+
 client.once('ready', () => {
     console.log('Loading Emote commands...');
 
@@ -95,15 +104,17 @@ client.on('message', message => {
 
         if (messages.length < 2) {
             console.log("Message too old to add reaction!");
+            message.reply("Bot cannot reply to messages that are older than when Bot was last rebooted, sorry!");
+            setTimeout(removeBotMessages, 5000, channel);
+            message.delete().catch();
             return;
         }
+
+        message.delete().catch();
 
         messages[0].react(client.emotes.get(emote))
             .then(console.log(`${user} reacted with ${emote}`))
             .catch();
-
-
-        message.delete().catch(console.log("Error deleting command message!"));
 
         return;
     }
