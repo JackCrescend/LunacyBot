@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+client.emotes = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (file of commandFiles) {
@@ -28,11 +29,15 @@ client.once('ready', () => {
         for (emoji of guild.emojis.values()) {
             const command = {};
             command.name = emoji.name.toLowerCase();
+
+            client.emotes.set(command.name, emoji);
+
             if (emoji.animated) {
                 command.content = `<a:${emoji.name}:${emoji.id}>`;
             } else {
                 command.content = `<:${emoji.name}:${emoji.id}>`;
             }
+
             command.execute = (message, args) => {
                 
                 message.channel.send(command.content);
@@ -71,6 +76,37 @@ client.on('message', message => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
+
+    /******************/
+    /* REACT COMMANDS */
+    /******************/
+
+    if (commandName === "r") {
+        if (args.length !== 1) { return; }
+        if (message.channel.type !== "text") { return; }
+
+        const emote = args[0].toLowerCase();
+
+        if (!client.emotes.has(emote)) { return; }
+
+        const channel = message.channel;
+        const user = message.author.username;
+        const messages = message.channel.messages.last(2);
+
+        if (messages.length < 2) {
+            console.log("Message too old to add reaction!");
+            return;
+        }
+
+        messages[0].react(client.emotes.get(emote))
+            .then(console.log(`${user} reacted with ${emote}`))
+            .catch();
+
+
+        message.delete().catch(console.log("Error deleting command message!"));
+
+        return;
+    }
 
     const command = client.commands.get(commandName);
     if (!command) { return; }
