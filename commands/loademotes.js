@@ -5,6 +5,7 @@ module.exports =  {
     alias: ["reload"],
     execute(client) {
         client.emotes = new Discord.Collection();
+        client.comboemotes = new Discord.Collection();
         
         for (guild of client.guilds.values()) {
             for (emoji of guild.emojis.values()) {
@@ -27,7 +28,8 @@ module.exports =  {
 
                 client.commands.set(command.name, command);
 
-                client.emotes.set(command.name, command.content);
+                client.emotes.set(command.name, emoji);
+                client.comboemotes.set(command.name, command.content);
             }
         }
 
