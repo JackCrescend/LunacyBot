@@ -22,5 +22,7 @@ module.exports = {
                 message.channel.send(response2);
             }
         }
+
+        message.delete().catch(console.log);
     }
 };

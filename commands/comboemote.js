@@ -15,6 +15,6 @@ module.exports = {
 
         message.channel.send(response);
 
-        message.delete().catch();
+        message.delete().catch(console.log);
     }
 };

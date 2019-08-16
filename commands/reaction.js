@@ -22,8 +22,8 @@ module.exports = {
             return;
         }
 
-        messages[0].react(client.emotes.get(emote))
-            .catch();
+        messages[0].react(client.emotes.get(emote)).catch(console.log);
+        message.delete().catch(console.log);
 
         return;
     }
