@@ -4,4 +4,4 @@ This is my custom Discord Bot for Lunacy servers, based on https://discord.js.or
 
 The files if directly copied will not work, since it's lacking the config.json file. I won't be uploading mine here, since it includes my bots password.
 
-I also had to nuke the commit history, since I had accidentally used a private name / email in some earlier commits. Oops!
+I'm rewriting the code from ground up, since old version had grown bloated with bad decisions early on.
