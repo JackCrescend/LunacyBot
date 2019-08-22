@@ -1,6 +1,6 @@
 module.exports = {
     name: "time",
-    alias: [],
+    alias: ["servertime", "st"],
     execute(client, message, args) {
         const time = new Date();
         const currentHours = time.getUTCHours();
@@ -14,7 +14,7 @@ module.exports = {
                 offset = 0;
             } else if (timezone == "GMT+1" || timezone == "UTC+1" || timezone == "CET") {
                 offset = 1;
-            } else if (timezone == "GMT+2" || timezone == "UTC+2" || timezone == "CEST") {
+            } else if (timezone == "GMT+2" || timezone == "UTC+2" || timezone == "CEST" || timezone == "GC" || timezone == "GRANDCHASE") {
                 offset = 2;
             } else if (timezone == "GMT+3" || timezone == "UTC+3") {
                 offset = 3;
@@ -72,15 +72,20 @@ module.exports = {
         let minutes = currentMinutes;
         let PM = false;
 
-        
-        if (hours >= 13) {
-            hours -= 12;
-        }
-        if (hours < 0) {
+        if (hours >= 24) {
+            hours -= 24;
+        } else if (hours < 0) {
             hours += 24;
         }
+
         if (hours >= 12) {
             PM = true;
+        }
+
+        if (hours == 0) {
+            hours += 12;
+        } else if (hours >= 13) {
+            hours -= 12;
         }
 
         let response = "Current time ";
