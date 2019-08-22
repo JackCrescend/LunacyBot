@@ -9,17 +9,8 @@ client.comboemotes = new Discord.Collection();
 
 client.once('ready', () => {
 
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-    for (file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        client.commands.set(command.name, command);
-        for (alias of command.alias) {
-            client.commands.set(alias, command);
-        }
-    }
-
-    let loadEmotes = client.commands.get("loademotes");
-    loadEmotes.execute(client);
+    const reload = require(`./commands/reload.js`);
+    reload.execute(client);
 
     console.log('Ready!');
 });
