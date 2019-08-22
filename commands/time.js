@@ -82,6 +82,17 @@ module.exports = {
             PM = true;
         }
 
+        let emote = " ";
+        if (hours >= 0 && hours < 8) {
+            emote += client.comboemotes.get("kannasleep");
+        } else if (hours >= 8 && hours < 12) {
+            emote += client.comboemotes.get("kannasippy");
+        } else if (hours >= 12 && hours < 18) {
+            emote += client.comboemotes.get("tohruhi"); 
+        } else if (hours >= 18 && hours < 24) {
+            emote += client.comboemotes.get("smugpls");
+        }
+
         if (hours == 0) {
             hours += 12;
         } else if (hours >= 13) {
@@ -107,6 +118,8 @@ module.exports = {
         } else {
             response += "AM";
         }
+
+        response += emote;
 
         message.channel.send(response);
     }
