@@ -1,11 +1,7 @@
-const fs = require('fs');
 const { prefix, token } = require('./config.json');
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
-client.emotes = new Discord.Collection();
-client.comboemotes = new Discord.Collection();
 
 client.once('ready', () => {
 
