@@ -12,7 +12,7 @@ module.exports = {
 
             if (timezone == "SERVERTIME" || timezone == "ST" || timezone == "GMT") {
                 offset = 0;
-            } else if (timezone == "GMT+1" || timezone == "UTC+1" || timezone == "CET") {
+            } else if (timezone == "GMT+1" || timezone == "UTC+1" || timezone == "CET" || timezone == "BST" || timezone == "BDT") {
                 offset = 1;
             } else if (timezone == "GMT+2" || timezone == "UTC+2" || timezone == "CEST" || timezone == "GC" || timezone == "GRANDCHASE") {
                 offset = 2;
