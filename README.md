@@ -1,7 +1,12 @@
 # LunacyBot
 
-This is my custom Discord Bot for Lunacy servers, based on https://discord.js.org/ library. Its purpose is to help automate role management through emoji responses, and to also post animated emojis in chat through !chat-commands.
+This is my custom Discord Bot for Lunacy servers (videogame guild), based on https://discord.js.org/. Its gone through multiple iterations and tweaks as I've experimented with what would be the most useful functions for chatters to have.
 
-The files if directly copied will not work, since it's lacking the config.json file. I won't be uploading mine here, since it includes my bots password.
+Currently, the bot does;
+1) Posting (animated) emotes on peoples behalf, since typically non-paying chatters wouldn't have access to animated emotes or emotes from other servers
+2) Posting entire chains of emotes, plus optional messages alongside them
+3) Adding (animated) emotes as reactions to messages in chat, once again getting around the typical emote restrictions
+4) Adding / removing roles from users, for instance letting regular users get access to certain flair roles to change their own chat colors without needing admin / officer help
+5) Posting current time in the most typical timezones, including UTC(+-12), CET, PST, EST, BST etc.
 
-I'm rewriting the code from ground up, since old version had grown bloated with bad decisions early on.
+And possibly more to be added as I come up with new ideas and inspiration.
