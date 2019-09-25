@@ -7,6 +7,7 @@ GC_roles.set("fabulous", "584286913645510656");
 GC_roles.set("axis", "610474668553535489");
 GC_roles.set("edgelord", "575741888926187522");
 GC_roles.set("potato", "584139153130651765");
+GC_roles.set("apple",'626533388844793856');
 
 module.exports = {
     name: "role",
