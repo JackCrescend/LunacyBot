@@ -10,7 +10,7 @@ module.exports = {
         if (args.length > 0) {
             const timezone = args[0].toUpperCase();
 
-            if (timezone == "SERVERTIME" || timezone == "ST" || timezone == "GMT") {
+            if (timezone == "SERVERTIME" || timezone == "ST" || timezone == "GMT" || timezone == "UTC") {
                 offset = 0;
             } else if (timezone == "GMT+1" || timezone == "UTC+1" || timezone == "CET" || timezone == "BST" || timezone == "BDT") {
                 offset = 1;
