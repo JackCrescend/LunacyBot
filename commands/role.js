@@ -17,7 +17,7 @@ lounge_roles.set("green", "674347563062788109");
 lounge_roles.set("gray", "674291144859058215");
 lounge_roles.set("black", "674351017537568794");
 lounge_roles.set("white", "674351204758716446");
-lounge_roles.set("blue", "674290040486232065");
+lounge_roles.set("blue", "674349925756174367");
 lounge_roles.set("purple", "674349448050245653");
 lounge_roles.set("magenta", "674347964436840524");
 lounge_roles.set("red", "674346959821078538");
