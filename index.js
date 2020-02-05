@@ -36,8 +36,8 @@ client.on('message', message => {
     }
 });
 
-client.on('raw', async event => {
-    // console.log(event);
-});
+//client.on('raw', async event => {
+    //console.log(event);
+//});
 
 client.login(token);
