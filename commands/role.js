@@ -19,11 +19,20 @@ const guilds_roles = new Map();
 
 const GC_id = "522571164208332810";
 const GC_roles = new Map();
-GC_roles.set("fabulous", "584286913645510656");
-GC_roles.set("axis", "610474668553535489");
-GC_roles.set("edgelord", "575741888926187522");
-GC_roles.set("potato", "584139153130651765");
-GC_roles.set("apple",'626533388844793856');
+GC_roles.set("yellow", "584139153130651765");
+GC_roles.set("orange", "674708815450603520");
+GC_roles.set("red", "626533388844793856");
+GC_roles.set("pink", "584286913645510656");
+GC_roles.set("magenta", "674709274118586399");
+GC_roles.set("purple", "674710239974785025");
+GC_roles.set("blue", "610474668553535489");
+GC_roles.set("cyan", "647776252148711444");
+GC_roles.set("turquoise", "674709322852466728");
+GC_roles.set("green", "674709530931626015");
+GC_roles.set("white", "674708982224388166");
+GC_roles.set("gray", "674709080647925787");
+GC_roles.set("grey", "674709080647925787");
+GC_roles.set("black", "575741888926187522");
 guilds_roles.set(GC_id, GC_roles);
 
 const lounge_id = "674290040486232065";
