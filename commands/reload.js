@@ -33,8 +33,6 @@ module.exports =  {
 
                 command.execute = (client, message, args) => {
                     message.channel.send(command.content);
-                    message.delete()
-                        .catch(console.log);
                 };
 
                 client.commands.set(command.name, command);

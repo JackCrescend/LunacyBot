@@ -17,14 +17,10 @@ module.exports = {
         const messages = message.channel.messages.last(offset);
 
         if (messages.length < offset) {
-            message.reply("Bot cannot reply to messages that are older than when Bot was last rebooted, sorry!");
-            message.delete().catch();
+            message.reply("Bot can't reply to messages older than when Bot was rebooted, sorry!");
             return;
         }
 
         messages[0].react(client.emotes.get(emote)).catch(console.log);
-        message.delete().catch(console.log);
-
-        return;
     }
 };

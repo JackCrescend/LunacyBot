@@ -29,12 +29,17 @@ client.on('message', message => {
     const command = client.commands.get(commandName);
 
     try {
-        command.execute(client, message, args);    
+        command.execute(client, message, args);
+        setTimeout(() => message.delete().catch(() => console.log("Message couldn't be deleted!")), 3000);
     } catch (e) {
         console.log(e);
-        message.reply('An error occurred running the command!');
     }
 });
+
+process.on('unhandledRejection', error => {
+	console.error('Unhandled promise rejection:', error);
+});
+
 
 //client.on('raw', async event => {
     //console.log(event);
