@@ -34,6 +34,11 @@ module.exports = {
         const data = JSON.parse(incData);
         const tracks = data.tracks.items;
 
+        if (tracks.length <= 0) {
+          message.channel.send("Search came up empty!");
+          return;
+        }
+
         let popularity = 0;
         let mostPopular = 0;
         for (let i = 0; i < tracks.length; ++i) {

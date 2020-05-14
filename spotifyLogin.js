@@ -32,7 +32,7 @@ exports.getSpotifyToken = (client, spotifyID, spotifySecret) => {
       }
       client.spotifyToken = JSON.parse(incData);
       const tokenTimer = client.spotifyToken.expires_in * 1000;
-      setTimeout(() => spotifyLogin(client, spotifyID, spotifySecret), tokenTimer);
+      setTimeout(() => getSpotifyToken(client, spotifyID, spotifySecret), tokenTimer);
       console.log("Spotify token acquired!");
     });
   });
