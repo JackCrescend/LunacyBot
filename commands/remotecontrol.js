@@ -15,8 +15,6 @@ module.exports = {
             }
         }
 
-        
-
         const channels = message.guild.channels.cache.values();
         for (const channel of channels) {
             if (channel.name.includes(targetChannel)) {

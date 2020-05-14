@@ -21,5 +21,7 @@ module.exports = {
         }
         
         messages[0].react(client.emotes.get(emote)).catch(console.log);
+
+        setTimeout(() => message.delete().catch(console.log), 2000);
     }
 };

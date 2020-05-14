@@ -15,5 +15,7 @@ module.exports = {
 
         if (response === "") { return; }
         message.channel.send(response);
+
+        setTimeout(() => message.delete().catch(console.log), 2000);
     }
 };

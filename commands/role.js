@@ -82,5 +82,7 @@ module.exports = {
                 }
             }
         }
+
+        setTimeout(() => message.delete().catch(console.log), 2000);
     }
 };

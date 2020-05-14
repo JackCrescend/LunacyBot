@@ -24,7 +24,6 @@ client.on('message', message => {
     if (!message.content.startsWith(prefix)) { return; }
 
     console.log(`${message.author.username}: ${message.content}`);
-    setTimeout(() => message.delete().catch(console.log), 2000);
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
