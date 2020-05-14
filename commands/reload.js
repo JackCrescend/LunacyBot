@@ -18,8 +18,10 @@ module.exports =  {
             }
         }
         
-        for (guild of client.guilds.values()) {
-            for (emoji of guild.emojis.values()) {
+        for (guild of client.guilds.cache.values()) {
+            if (!guild.available) { continue; }
+
+            for (emoji of guild.emojis.cache.values()) {
 
                 const command = {};
 
@@ -36,7 +38,6 @@ module.exports =  {
                 };
 
                 client.commands.set(command.name, command);
-
                 client.emotes.set(command.name, emoji);
                 client.comboemotes.set(command.name, command.content);
             }

@@ -1,6 +1,6 @@
 module.exports = {
     name: "react",
-    alias: ["r"],
+    alias: ["r", "reaction"],
     execute(client, message, args) {
         if (args.length < 1 || args.length > 2) { return; }
 
@@ -13,14 +13,13 @@ module.exports = {
             offset = (parseInt(args[1]) + 1);
         }
 
-        const user = message.author.username;
-        const messages = message.channel.messages.last(offset);
+        const messages = message.channel.messages.cache.last(offset);
 
         if (messages.length < offset) {
             message.reply("Bot can't reply to messages older than when Bot was rebooted, sorry!");
             return;
         }
-
+        
         messages[0].react(client.emotes.get(emote)).catch(console.log);
     }
 };

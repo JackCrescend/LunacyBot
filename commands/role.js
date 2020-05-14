@@ -71,16 +71,15 @@ module.exports = {
                 const member = message.member;
                 if (!member) { return; }
 
-                if (member.roles.has(role)) {
-                    member.removeRole(role)
+                if (member.roles.cache.has(role)) {
+                    member.roles.remove(role)
                         .then(console.log(`${rolename} removed from ${message.author.username}`))
                         .catch(console.log);
                 } else {
-                    member.addRole(role)
+                    member.roles.add(role)
                         .then(console.log(`${rolename} added to ${message.author.username}`))
                         .catch(console.log);
                 }
-                message.delete().catch(console.log);
             }
         }
     }

@@ -15,10 +15,12 @@ module.exports = {
             }
         }
 
-        const channels = message.guild.channels;
+        
+
+        const channels = message.guild.channels.cache.values();
         for (const channel of channels) {
-            if (channel[1].name.includes(targetChannel)) {
-                channel[1].send(response);
+            if (channel.name.includes(targetChannel)) {
+                channel.send(response);
                 return;
             }
         }

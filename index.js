@@ -30,7 +30,7 @@ client.on('message', message => {
 
     try {
         command.execute(client, message, args);
-        setTimeout(() => message.delete().catch(() => console.log("Message couldn't be deleted!")), 3000);
+        setTimeout(() => message.delete().catch(() => console.log("Message couldn't be deleted!")), 2000);
     } catch (e) {
         console.log(e);
     }
