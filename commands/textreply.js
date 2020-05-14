@@ -1,9 +1,9 @@
 module.exports = {
-    name: "text",
-    alias: ["t"],
+    name: "emote",
+    alias: ["e", "text", "combo", "comboemote"],
     execute(client, message, args) {
-        let response = `${message.author.username}:`;
-
+        let response = "";
+        
         for (word of args) {
             const lowercase = word.toLowerCase();
             if (client.comboemotes.has(lowercase)) {

@@ -21,6 +21,7 @@ client.on('message', message => {
     if (!message.content.startsWith(prefix)) { return; }
 
     console.log(`${message.author.username}: ${message.content}`);
+    setTimeout(() => message.delete().catch(console.log), 2000);
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -30,7 +31,6 @@ client.on('message', message => {
 
     try {
         command.execute(client, message, args);
-        setTimeout(() => message.delete().catch(() => console.log("Message couldn't be deleted!")), 2000);
     } catch (e) {
         console.log(e);
     }
@@ -40,7 +40,7 @@ process.on('unhandledRejection', error => {
 	console.error('Unhandled promise rejection:', error);
 });
 
-
+// Kept for testing purposes
 //client.on('raw', async event => {
     //console.log(event);
 //});
