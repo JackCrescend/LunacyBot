@@ -1,5 +1,7 @@
-const { prefix, token } = require('./config.json');
+const { prefix, token, spotifyID, spotifySecret } = require('./config.json');
 const Discord = require('discord.js');
+
+const Spotify = require('./spotifyLogin');
 
 const client = new Discord.Client();
 
@@ -7,6 +9,7 @@ client.once('ready', () => {
 
     const reload = require(`./commands/reload.js`);
     reload.execute(client);
+    Spotify.getSpotifyToken(client, spotifyID, spotifySecret);
 
     console.log('Ready!');
 });
