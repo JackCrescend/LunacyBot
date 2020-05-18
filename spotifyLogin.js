@@ -1,6 +1,7 @@
 const https = require('https')
+const { spotifyID, spotifySecret } = require('./config.json');
 
-exports.getSpotifyToken = (client, spotifyID, spotifySecret) => {
+  module.exports = () => new Promise((resolve, reject) => {
 
   const data = "grant_type=client_credentials";
 
@@ -28,15 +29,13 @@ exports.getSpotifyToken = (client, spotifyID, spotifySecret) => {
     res.on('end', () => {
       if (res.statusCode !== 200) {
         console.log(res);
-        return;
+        reject("Error acquiring token!");
       }
-      client.spotifyToken = JSON.parse(incData);
-      const tokenTimer = client.spotifyToken.expires_in * 1000;
-      setTimeout(() => getSpotifyToken(client, spotifyID, spotifySecret), tokenTimer);
       console.log("Spotify token acquired!");
+      resolve(JSON.parse(incData));
     });
   });
 
   req.write(data);
   req.end();
-};
+});
