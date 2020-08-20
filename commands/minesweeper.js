@@ -46,7 +46,7 @@ module.exports = {
         }
       }
 
-      console.log(`Size: ${width}x${height}, mines: ${mineCount}`)
+      // console.log(`Size: ${width}x${height}, mines: ${mineCount}`)
 
       // Creating the minesweeper field
 
@@ -83,36 +83,48 @@ module.exports = {
         }
       }
 
+      let reply = "";
       for (let y = 0; y < height; ++y) {
         let row = "";
         for (let x = 0; x < width; ++x) {
           if (field[x][y].mine) {
-            row += "X";
+            row += "||:boom:||";
           } else {
-            row += field[x][y].warningNumber;
+            switch(field[x][y].warningNumber) {
+              case 0:
+                row += "||:zero:||";
+                break;
+              case 1:
+                row += "||:one:||";
+                break;
+              case 2:
+                row += "||:two:||";
+                break;
+              case 3:
+                row += "||:three:||";
+                break;
+              case 4:
+                row += "||:four:||";
+                break;
+              case 5:
+                row += "||:five:||";
+                break;
+              case 6:
+                row += "||:six:||";
+                break;
+              case 7:
+                row += "||:seven:||";
+                break;
+              case 8:
+                row += "||:eight:||";
+                break;
+            }
           }
         }
-        console.log(row);
+        reply += `${row}\n`
+        // console.log(row);
       }
 
-      // const emote = args[0].toLowerCase();
-      // if (!client.emotes.has(emote)) { return; }
-
-      // let offset = 2;
-      // if (args.length === 2) {
-      //     if (isNaN(args[1])) { return; }
-      //     offset = (parseInt(args[1]) + 1);
-      // }
-
-      // const messages = message.channel.messages.cache.last(offset);
-
-      // if (messages.length < offset) {
-      //     message.reply("Bot can't reply to messages older than when Bot was rebooted, sorry!");
-      //     return;
-      // }
-      
-      // messages[0].react(client.emotes.get(emote)).catch(console.log);
-
-      // setTimeout(() => message.delete().catch(console.log), 2000);
+      message.channel.send(reply);
   }
 };
