@@ -76,7 +76,7 @@ module.exports = {
         }
       }
 
-      let reply = "";
+      let reply = `Mines: ${mineCount}\n`;
       for (let y = 0; y < height; ++y) {
         let row = "";
         for (let x = 0; x < width; ++x) {
