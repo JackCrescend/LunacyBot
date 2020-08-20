@@ -10,40 +10,33 @@ module.exports = {
   name: "minesweeper",
   alias: [],
   execute(client, message, args) {
-      if (args.length !== 0 && args.length !== 3) {
-        message.reply("Use the command with no arguments for default, or specify 3 values for width, height and mine count.");
+      if (args.length > 1) {
+        message.reply("Give only one value for mine count.");
         return;
       }
 
-      for (const value of args) {
-        if (isNaN(value)) { return; }
-      }
+      // Due to discord message length limits, minesweeper field size
+      // had to be capped to 10x10.
 
-      let width = 10;
-      let height = 10;
+      const width = 10;
+      const height = 10;
       let mineCount = 10;
-      let squareCount = width * height;
 
-      if (args.length === 3) {
-        width = args[0];
-        height = args[1];
-        mineCount = args[2];
-        squareCount = width * height;
-
-        if (width < 0 || width > 50 || height < 0 || height > 50) {
-          message.reply("Minesweeper field size has to be between 0-50");
+      if (args.length === 1) {
+        if (isNaN(args[0])) {
+          message.reply("Mine count needs to be a number.");
+          return;
+        }
+        if (args[0] < 0) {
+          message.reply("Mine count needs to be a positive number.");
+          return;
+        }
+        if (args[0] > 50) {
+          message.reply("Maximum mine count is 50.");
           return;
         }
 
-        if (mineCount < 0) {
-          message.reply("Mine count needs to be positive.");
-          return;
-        }
-
-        if (mineCount > (squareCount / 2)) {
-          message.reply("Mine count needs to be less than half of the whole map.")
-          return;
-        }
+        mineCount = args[0];
       }
 
       // console.log(`Size: ${width}x${height}, mines: ${mineCount}`)
