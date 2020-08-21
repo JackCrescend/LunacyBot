@@ -77,12 +77,23 @@ module.exports = {
       }
 
       let reply = `Mines: ${mineCount}\n`;
+      let openSquare = false;
+
       for (let y = 0; y < height; ++y) {
         let row = "";
         for (let x = 0; x < width; ++x) {
           if (field[x][y].mine) {
             row += "||:boom:||";
           } else {
+            
+            if (openSquare === false) {
+              if (field[x][y].warningNumber === 0) {
+                row += ":zero:";
+                openSquare = true;
+                continue;
+              }
+            }
+
             switch(field[x][y].warningNumber) {
               case 0:
                 row += "||:zero:||";
