@@ -52,7 +52,8 @@ module.exports = {
         for (let y = 0; y < height; ++y) {
           field[x][y] = {
             mine: false,
-            warningNumber: 0
+            warningNumber: 0,
+            revealed: false
           }
         }
       }
@@ -76,24 +77,83 @@ module.exports = {
         }
       }
 
+      // finding a starting point for player
+
+      function recursiveReveal(x,y) {
+        if (x < 0 || y < 0 || x >= width || y >= height) { return; }
+
+        const squareData = field[x][y];
+
+        if (squareData.revealed) { return; }
+
+        field[x][y].revealed = true;
+        
+        if (squareData.warningNumber === 0) {
+          for (let ix = x - 1; ix <= x + 1; ++ix) {
+            for (let iy = y - 1; iy <= y + 1; ++iy) {
+              recursiveReveal(ix, iy);
+            }
+          }
+        }
+      }
+
+      let finished = false;
+      for (let x = 0; x < width; ++x) {
+        if (finished) { break; }
+        for (let y = 0; y < height; ++y) {
+          if (field[x][y].warningNumber === 0) {
+            recursiveReveal(x,y);
+            finished = true;
+            break;
+          }
+        }
+      }
+
+      // Printing the minesweeper board
+
       let reply = `Mines: ${mineCount}\n`;
-      let openSquare = false;
 
       for (let y = 0; y < height; ++y) {
         let row = "";
         for (let x = 0; x < width; ++x) {
-          if (field[x][y].mine) {
-            row += "||:boom:||";
-          } else {
-            
-            if (openSquare === false) {
-              if (field[x][y].warningNumber === 0) {
-                row += ":zero:";
-                openSquare = true;
-                continue;
-              }
-            }
 
+          if (field[x][y].revealed) {
+            switch(field[x][y].warningNumber) {
+              case 0:
+                row += ":zero:";
+                break;
+              case 1:
+                row += ":one:";
+                break;
+              case 2:
+                row += ":two:";
+                break;
+              case 3:
+                row += ":three:";
+                break;
+              case 4:
+                row += ":four:";
+                break;
+              case 5:
+                row += ":five:";
+                break;
+              case 6:
+                row += ":six:";
+                break;
+              case 7:
+                row += ":seven:";
+                break;
+              case 8:
+                row += ":eight:";
+                break;
+            }
+          } 
+          
+          else if (field[x][y].mine) {
+            row += "||:boom:||";
+          } 
+          
+          else {
             switch(field[x][y].warningNumber) {
               case 0:
                 row += "||:zero:||";
