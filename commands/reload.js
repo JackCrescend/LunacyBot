@@ -8,15 +8,6 @@ module.exports =  {
         client.commands = new Discord.Collection();
         client.emotes = new Discord.Collection();
         client.comboemotes = new Discord.Collection();
-
-        const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-        for (file of commandFiles) {
-            const command = require(`./${file}`);
-            client.commands.set(command.name, command);
-            for (alias of command.alias) {
-                client.commands.set(alias, command);
-            }
-        }
         
         for (guild of client.guilds.cache.values()) {
             if (!guild.available) { continue; }
@@ -35,6 +26,7 @@ module.exports =  {
 
                 command.execute = (client, message, args) => {
                     message.channel.send(command.content);
+                    setTimeout(() => message.delete().catch(console.log), 2000);
                 };
 
                 client.commands.set(command.name, command);
@@ -43,6 +35,17 @@ module.exports =  {
             }
         }
 
-        console.log("Emotes loaded!");
+        console.log("Emotes loaded!")
+
+        const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+        for (file of commandFiles) {
+            const command = require(`./${file}`);
+            client.commands.set(command.name, command);
+            for (alias of command.alias) {
+                client.commands.set(alias, command);
+            }
+        }
+
+        console.log("Commands loaded!");
     }
 };

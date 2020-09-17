@@ -1,6 +1,6 @@
 module.exports = {
     name: "emote",
-    alias: ["e", "text", "combo", "comboemote"],
+    alias: ["e", "c", "combo", "comboemote"],
     execute(client, message, args) {
         let response = "";
         
