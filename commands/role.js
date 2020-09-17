@@ -57,7 +57,10 @@ module.exports = {
     name: "role",
     alias: ["toggle"],
     execute(client, message, args) {
-        if (message.channel.type !== "text") { return; }
+        if (message.channel.type !== "text") {
+            message.reply("Role commands only work within the discord server!");
+            return;
+        }
         if (args.length != 1) { return; }
         const rolename = args[0].toLowerCase();
 
