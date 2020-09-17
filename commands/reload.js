@@ -8,6 +8,7 @@ module.exports =  {
     info: "Reloads emotes without needing a bot restart. Also attempts to update commands (buggy)",
     execute(client) {
         client.commands = new Discord.Collection();
+        client.commandList = new Array();
         client.emotes = new Discord.Collection();
         client.comboemotes = new Discord.Collection();
         
@@ -45,6 +46,7 @@ module.exports =  {
         for (file of commandFiles) {
             const command = require(`./${file}`);
             client.commands.set(command.name, command);
+            client.commandList.push(command.name);
             for (alias of command.alias) {
                 client.commands.set(alias, command);
             }
