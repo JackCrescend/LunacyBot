@@ -2,25 +2,35 @@ module.exports = {
     name: "emotelist",
     alias: [],
     execute(client, message, args) {
-        for (guild of client.guilds.values()) {
-            let response1 = "**" + guild.name + "**\n";
-            let response2 = "**" + guild.name + " animated**\n";
+        let timeoutMultiplier = 0;
+        for (guildData of client.guilds.cache) {
+            guild = guildData[1];            
 
-            let animated = false;
+            let emojis = `**${guild.name}** emojis\n`;
+            let animatedEmojis = "\n";
 
-            for (emoji of guild.emojis.values()) {
+            let emojiCount = 0;
+            let animatedCount = 0;
+
+            for (emoji of guild.emojis.cache.values()) {
                 if (emoji.animated) {
-                    animated = true;
-                    response2 += `<a:${emoji.name}:${emoji.id}>`;
+                    animatedCount += 1;
+                    animatedEmojis += `<a:${emoji.name}:${emoji.id}>`;
+                    if (animatedCount % 10 === 0) { animatedEmojis += "\n"; }
                 } else {
-                    response1 += `<:${emoji.name}:${emoji.id}>`;
+                    emojiCount += 1;
+                    emojis += `<:${emoji.name}:${emoji.id}>`;
+                    if (emojiCount % 10 === 0) { emojis += "\n"; }
                 }
             }
 
-            message.channel.send(response1);
-            if (animated) {
-                message.channel.send(response2);
-            }
+            setTimeout(() => {
+                message.channel.send(emojis);
+                if (animatedCount > 0) {
+                    message.channel.send(animatedEmojis);
+                }
+            }, 2000 * timeoutMultiplier);
+            timeoutMultiplier += 1;
         }
 
         setTimeout(() => message.delete().catch(console.log), 2000);
