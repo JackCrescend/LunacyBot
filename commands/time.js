@@ -1,6 +1,7 @@
 module.exports = {
     name: "time",
     alias: ["servertime", "st"],
+    hidden: false,
     parameters: ["[timezone] = Optional, the target timezone (GMT, UTC+4, PST etc..), defaults to UTC"],
     info: "Gives current time in given timezone, the list of timezones currently hard-coded and contains hopefully most of the important ones",
     execute(client, message, args) {

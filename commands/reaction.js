@@ -1,6 +1,7 @@
 module.exports = {
     name: "react",
     alias: ["r", "reaction"],
+    hidden: false,
     parameters: [
         "[emote name] = The emote you want the bot to react with",
         "[message number] = Optional, Specify which message to reply to. Count from bottom, default is 1 and reacts to the latest message"

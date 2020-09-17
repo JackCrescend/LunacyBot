@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 module.exports =  {
     name: "reload",
     alias: [],
+    hidden: true,
     parameters: [],
     info: "Reloads emotes without needing a bot restart. Also attempts to update commands (buggy)",
     execute(client) {
@@ -46,7 +47,9 @@ module.exports =  {
         for (file of commandFiles) {
             const command = require(`./${file}`);
             client.commands.set(command.name, command);
-            client.commandList.push(command.name);
+            if (!command.hidden) {
+                client.commandList.push(command.name);
+            }
             for (alias of command.alias) {
                 client.commands.set(alias, command);
             }

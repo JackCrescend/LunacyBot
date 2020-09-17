@@ -1,6 +1,7 @@
 module.exports = {
     name: "message",
     alias: ["msg", "c", "combo", "comboemote"],
+    hidden: false,
     parameters: ["[sentence] = the message that the bot will repeat"],
     info: "Bot posts given message and replaces emote names with the actual emote",
     execute(client, message, args) {

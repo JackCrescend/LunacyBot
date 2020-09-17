@@ -3,6 +3,7 @@ const { prefix } = require("../config.json");
 module.exports = {
   name: "emote",
   alias: [],
+  hidden: false,
   parameters: [],
   info: `Post singular emotes with the bot by starting with ${prefix} and then emote name. Capitalization doesn't matter, check ${prefix}emotelist for full list`,
   execute(client, message, args) {

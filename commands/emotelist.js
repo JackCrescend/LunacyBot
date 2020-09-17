@@ -1,6 +1,7 @@
 module.exports = {
     name: "emotelist",
     alias: [],
+    hidden: false,
     parameters: [],
     info: "Posts all emotes from every server the bot is on. Prepare for spam!",
     execute(client, message, args) {

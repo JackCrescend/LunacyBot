@@ -1,6 +1,7 @@
 module.exports = {
     name: "remotecontrol",
     alias: ["remote"],
+    hidden: true,
     parameters: [
         "[channel name] = channel name to be posted in, partial match ok",
         "[sentence] = the message the bot will post (similar to message command)"
