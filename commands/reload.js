@@ -26,7 +26,9 @@ module.exports =  {
 
                 command.execute = (client, message, args) => {
                     message.channel.send(command.content);
-                    setTimeout(() => message.delete().catch(console.log), 2000);
+                    if (message.channel.type === "text") {
+                        setTimeout(() => message.delete().catch(console.log), 2000);
+                    }
                 };
 
                 client.commands.set(command.name, command);

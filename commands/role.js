@@ -57,6 +57,7 @@ module.exports = {
     name: "role",
     alias: ["toggle"],
     execute(client, message, args) {
+        if (message.channel.type !== "text") { return; }
         if (args.length != 1) { return; }
         const rolename = args[0].toLowerCase();
 

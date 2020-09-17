@@ -7,7 +7,7 @@ module.exports = {
             guild = guildData[1];            
 
             let emojis = `**${guild.name}** emojis\n`;
-            let animatedEmojis = "\n";
+            let animatedEmojis = "animated emojis\n";
 
             let emojiCount = 0;
             let animatedCount = 0;
@@ -33,6 +33,8 @@ module.exports = {
             timeoutMultiplier += 1;
         }
 
-        setTimeout(() => message.delete().catch(console.log), 2000);
+        if (message.channel.type === "text") {
+            setTimeout(() => message.delete().catch(console.log), 2000);
+        }
     }
 };
