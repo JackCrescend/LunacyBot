@@ -15,12 +15,13 @@ client.once('ready', () => {
 
 client.on('message', message => {
     if (message.author.bot) { return; }
-    if (message.channel.type === "dm") {
-        console.log(`${message.author.username}: ${message.content}`);
+    if (message.channel.type !== "text" && message.channel.type !== "dm") { return; }
+    if (!message.content.startsWith(prefix)) { 
+        if (message.channel.type === "dm") {
+            console.log(`${message.author.username}: ${message.content}`);
+        }
         return;
     }
-    if (message.channel.type !== "text") { return; }
-    if (!message.content.startsWith(prefix)) { return; }
 
     console.log(`${message.author.username}: ${message.content}`);
 
