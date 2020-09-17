@@ -1,6 +1,8 @@
 module.exports = {
     name: "emotelist",
     alias: [],
+    parameters: [],
+    info: "Posts all emotes from every server the bot is on. Prepare for spam!",
     execute(client, message, args) {
         let timeoutMultiplier = 0;
         for (guildData of client.guilds.cache) {

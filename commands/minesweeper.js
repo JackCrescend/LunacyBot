@@ -9,6 +9,8 @@ function randInt(max) {
 module.exports = {
   name: "minesweeper",
   alias: [],
+  parameters: ["[mine count] = Optional, changes how many mines the board will have. Default is 10, max is 50."],
+  info: "Bot will post a randomly generated 10x10 minesweeper grid with the given amount of mines.",
   execute(client, message, args) {
     if (args.length > 1) {
       message.reply("Give only one value for mine count.");

@@ -1,6 +1,11 @@
 module.exports = {
     name: "remotecontrol",
     alias: ["remote"],
+    parameters: [
+        "[channel name] = channel name to be posted in, partial match ok",
+        "[sentence] = the message the bot will post (similar to message command)"
+    ],
+    info: "Intended for admin use only, posts a message on another channel within the same server (roleplay as the bot)",
     execute(client, message, args) {
         if (message.channel.type !== "text") { 
             message.reply("Remotecontrol only works from within the discord server!");

@@ -56,6 +56,8 @@ guilds_roles.set(lounge_id, lounge_roles);
 module.exports = {
     name: "role",
     alias: ["toggle"],
+    parameters: ["[role name] = the name / alias of the role"],
+    info: "Toggles the given role on / off as per user request, list of available roles currently hard-coded per server",
     execute(client, message, args) {
         if (message.channel.type !== "text") {
             message.reply("Role commands only work within the discord server!");

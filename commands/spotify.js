@@ -4,6 +4,8 @@ const getSpotifyToken = require('../spotifyLogin')
 module.exports = {
   name: "spotify",
   alias: [],
+  parameters: ["[song search words] = all parameters will be written into the spotify search"],
+  info: "Gives a song link to the closest guess to your search, as determined by Spotifys algorithms",
   execute(client, message, args) {
 
     if (client.spotifyTokenValid) {

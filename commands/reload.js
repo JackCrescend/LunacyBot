@@ -4,6 +4,8 @@ const Discord = require('discord.js');
 module.exports =  {
     name: "reload",
     alias: [],
+    parameters: [],
+    info: "Reloads emotes without needing a bot restart. Also attempts to update commands (buggy)",
     execute(client) {
         client.commands = new Discord.Collection();
         client.emotes = new Discord.Collection();
