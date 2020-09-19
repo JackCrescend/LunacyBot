@@ -1,13 +1,24 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 
+const adminPermission = 0x00000008;
+
 module.exports =  {
     name: "reload",
     alias: [],
     hidden: true,
     parameters: [],
     info: "Reloads emotes without needing a bot restart. Also attempts to update commands (buggy)",
-    execute(client) {
+    execute(client, message, args) {
+        if (message) {
+            if (message.channel.type !== "text") { return; }
+            const sender = message.guild.members.cache.get(message.author.id);
+            if (!sender.hasPermission(adminPermission)) {
+                message.reply("Lacking permission to use command.");
+                return;
+            }
+        }
+
         client.commands = new Discord.Collection();
         client.commandList = new Array();
         client.emotes = new Discord.Collection();

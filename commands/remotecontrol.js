@@ -1,3 +1,6 @@
+const adminPermission = 0x00000008;
+
+
 module.exports = {
     name: "remotecontrol",
     alias: ["remote"],
@@ -12,7 +15,15 @@ module.exports = {
             message.reply("Remotecontrol only works from within the discord server!");
             return;
         }
+
         if (args.length < 2) { return; }
+
+        const sender = message.guild.members.cache.get(message.author.id);
+        if (!sender.hasPermission(adminPermission)) {
+            message.reply("Lacking permission to use command.");
+            return;
+        }
+
         const targetChannel = args.shift().toLowerCase();
 
         let response = "";
