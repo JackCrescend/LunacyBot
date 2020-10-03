@@ -1,3 +1,4 @@
+const { prefix } = require("../config.json");
 let roleData = require("../roleconfig.json");
 const fs = require("fs");
 
@@ -7,8 +8,8 @@ module.exports = {
   name: "removerolesetup",
   alias: [],
   hidden: true,
-  parameters: [],
-  info: `Moderator only command, removes old role setup`,
+  parameters: [`[rolename] = role nickname to be removed from ${prefix}role toggle list`],
+  info: `Moderator only command, removes role setup so users can't toggle it anymore`,
   execute(client, message, args) {
     if (message.channel.type != "text") { return; }
 
@@ -32,7 +33,10 @@ module.exports = {
     }
 
     serverData.roles.splice(roleIndex, 1);
-    
+
     message.react("👌");
+    setTimeout(() => message.delete().catch(console.log), 2000);
+
+    fs.writeFileSync("./roleconfig.json", JSON.stringify(roleData));
   }
 }

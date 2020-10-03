@@ -8,7 +8,10 @@ module.exports = {
   name: "rolesetup",
   alias: [],
   hidden: true,
-  parameters: [],
+  parameters: [
+    "[rolename] = full name or partial match of the actual role name",
+    "[nickname] = optional, the nickname for the role that users will call it with. Defaults to the rolename."
+  ],
   info: `Moderator only command, prepares a given role to be controlled by the bot. After setup, ${prefix}role lets users to toggle the role for themselves.`,
   execute(client, message, args) {
     if (message.channel.type != "text") { return; }
@@ -69,6 +72,7 @@ module.exports = {
     roleData[serverIndex].roles.push(newRoleSetup);
 
     message.react('👌');
+    setTimeout(() => message.delete().catch(console.log), 2000);
 
     fs.writeFileSync("./roleconfig.json", JSON.stringify(roleData));
   }

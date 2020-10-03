@@ -35,27 +35,6 @@ module.exports = {
                 .catch(console.log);
         }
 
-        /* 
-        if (serverRoles) {
-            const available_roles = guilds_roles.get(message.guild.id);
-            if (available_roles.has(rolename)) {
-                const role = available_roles.get(rolename);
-                const member = message.member;
-                if (!member) { return; }
-
-                if (member.roles.cache.has(role)) {
-                    member.roles.remove(role)
-                        .then(console.log(`${rolename} removed from ${message.author.username}`))
-                        .catch(console.log);
-                } else {
-                    member.roles.add(role)
-                        .then(console.log(`${rolename} added to ${message.author.username}`))
-                        .catch(console.log);
-                }
-            }
-        }
-        */
-
         message.react("👌");
         setTimeout(() => message.delete().catch(console.log), 2000);
     }
