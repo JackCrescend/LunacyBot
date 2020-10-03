@@ -25,8 +25,8 @@ client.on('message', message => {
 
     console.log(`${message.author.username}: ${message.content}`);
 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const commandName = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).split(/ +/).map(arg => arg.toLowerCase());
+    const commandName = args.shift();
 
     if (!client.commands.has(commandName)) { return; }
     const command = client.commands.get(commandName);
