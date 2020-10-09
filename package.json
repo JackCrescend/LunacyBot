@@ -18,6 +18,7 @@
   "homepage": "https://github.com/JackCrescend/LunacyBot#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "node-fetch": "^2.6.1",
     "package.json": "^2.0.1"
   }
 }
