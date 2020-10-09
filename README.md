@@ -10,3 +10,13 @@ Currently, the bot does;
 5) Posting current time in the most typical timezones, including UTC(+-12), CET, PST, EST, BST etc.
 
 And possibly more to be added as I come up with new ideas and inspiration.
+
+<--- Full README rewrite coming later --->
+
+Certain commands use external services for functionality
+
+- Spotify's Web API for searching songs by user input
+https://developer.spotify.com/documentation/web-api/
+
+- WorldTimeAPI for querying current time across the globe
+http://worldtimeapi.org/
