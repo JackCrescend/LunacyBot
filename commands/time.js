@@ -1,6 +1,8 @@
-const timezones = require("../timezone.json").map(timezone => timezone.toLowerCase());
-const fetch = require("node-fetch");
 const URL = "http://worldtimeapi.org/api/timezone";
+const fetch = require("node-fetch");
+const timezones = require("../timezones.json");
+const capitals = require("../capitals.json");
+
 
 module.exports = {
     name: "time",
@@ -13,11 +15,14 @@ module.exports = {
             message.reply("give a timezone or a capital name as parameter");
             return;
         }
-        const searchTerm = args.map(word => word.toLowerCase()).join("_");
+        let searchTerm = args.map(word => word.toLowerCase()).join("_");
+        
+        if (capitals[searchTerm]) searchTerm = capitals[searchTerm];
+
         const timezone = timezones.find(t => t.includes(searchTerm));
 
         if (!timezone) {
-            message.reply(`could not find timezone ${timezone}`);
+            message.reply(`could not find timezone ${searchTerm}`);
             return;
         }
 
