@@ -7,8 +7,8 @@ module.exports = {
   name: "avatar",
   alias: [],
   hidden: false,
-  parameters: [],
-  info: ``,
+  parameters: ["[username] = Whose avatar you want to find. Defaults to your own name."],
+  info: `Finds a link to the users avatar image and sends it back as a message`,
   execute(client, message, args) {
     const searchTerm = args[0] ? args[0] : message.author.username.toLowerCase();
     const guildMembers = message.guild.members.cache;
