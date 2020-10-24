@@ -1,3 +1,8 @@
+const imageOptions = {
+  format: "png",
+  dynamic: true
+}
+
 module.exports = {
   name: "avatar",
   alias: [],
@@ -5,12 +10,7 @@ module.exports = {
   parameters: [],
   info: ``,
   execute(client, message, args) {
-    if (args.length < 1) {
-      message.channel.send(message.author.avatarURL("png"));
-      return;
-    }
-    
-    const searchTerm = args[0];
+    const searchTerm = args[0] ? args[0] : message.author.username.toLowerCase();
     const guildMembers = message.guild.members.cache;
 
     const member = guildMembers.find(member => member.user.username.toLowerCase().includes(searchTerm));
@@ -20,6 +20,8 @@ module.exports = {
       return;
     }
 
-    message.channel.send(member.user.avatarURL("png"));
+    const reply = `**${member.user.username}**`;
+    const avatar = member.user.avatarURL(imageOptions);
+    message.channel.send(reply, { files: [avatar] });
   }
 }
